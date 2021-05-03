@@ -15,7 +15,7 @@ digicompute.register_computer("<computer_string>", {
 })
 ```
 
-The definition is formed just like that of a normal node definition, except digicompute uses it to do a lot of groundwork rather than requiring you to do it manually. **Note:** do not put a modname in the computer string, `digicompute:` is automatically inserted.
+The definition is formed just like that of a normal node definition, except digicompute uses it to do a lot of groundwork rather than requiring you to do it manually. **Note:** do not put a modname in the computer string, `digicompute_redo:` is automatically inserted.
 
 **Example:**
 ```lua

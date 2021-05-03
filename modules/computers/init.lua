@@ -34,7 +34,7 @@ function digicompute.c:set_user(pos, name)
 			local formname = meta:get_string("formname")
 			-- if formname is defined, close that formspec
 			if formname ~= "" then
-				minetest.close_formspec(current_user, "digicompute:"..formname)
+				minetest.close_formspec(current_user, "digicompute_redo:"..formname)
 			end
 			-- Remove from current users
 			current_users[current_user] = nil
@@ -56,7 +56,7 @@ function digicompute.c:unset_user(pos, name)
 		local formname = meta:get_string("formname")
 		-- if formname is defined, close that formspec
 		if formname ~= "" then
-			minetest.close_formspec(name, "digicompute:"..formname)
+			minetest.close_formspec(name, "digicompute_redo:"..formname)
 		end
 	end
 end

@@ -282,7 +282,7 @@ function digicompute.c:open(pos, player, formname)
 			digicompute.c:set_user(pos, name)
 
 			computer_contexts[name] = minetest.get_meta(pos):get_string("id")
-			minetest.show_formspec(name, "digicompute:"..formname, form.get(pos, player))
+			minetest.show_formspec(name, "digicompute_redo:"..formname, form.get(pos, player))
 			return true
 		end
 	else

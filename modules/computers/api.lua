@@ -25,7 +25,7 @@ local check_booting = coroutine.create(function()
 			local temp = get_node(c.pos)
 			local ddef = minetest.registered_nodes[temp.name].digicompute
 			if ddef.state == "off" or ddef.state == "bios" then
-				local name, param2 = "digicompute:"..ddef.base, temp.param2
+				local name, param2 = "digicompute_redo:"..ddef.base, temp.param2
 				digicompute.c:complete_boot(c.pos, id, name, param2)
 			else
 				c.booting = nil
@@ -158,7 +158,7 @@ end
 -- [function] turn computer off
 function digicompute.c:off(pos, player)
 	local temp = minetest.get_node(pos) -- Get basic node information
-	local offname = "digicompute:"..minetest.registered_nodes[temp.name].digicompute.base
+	local offname = "digicompute_redo:"..minetest.registered_nodes[temp.name].digicompute.base
 	local meta = minetest.get_meta(pos)
 	-- Swap node to off
 	minetest.swap_node({x = pos.x, y = pos.y, z = pos.z}, {name = offname, param2 = temp.param2})
@@ -190,7 +190,7 @@ end
 
 function digicompute.register_computer(itemstring, def)
 	-- off
-	minetest.register_node("digicompute:"..itemstring, {
+	minetest.register_node("digicompute_redo:"..itemstring, {
 		digicompute = {
 			state = "off",
 			base = itemstring,
@@ -201,7 +201,7 @@ function digicompute.register_computer(itemstring, def)
 		paramtype = "light",
 		paramtype2 = "facedir",
 		groups = {cracky = 2},
-		drop = "digicompute:"..itemstring,
+		drop = "digicompute_redo:"..itemstring,
 		sounds = default.node_sound_stone_defaults(),
 		node_box = def.node_box,
 		after_place_node = function(pos, player)
@@ -230,7 +230,7 @@ function digicompute.register_computer(itemstring, def)
 		end,
 	})
 	-- bios
-	minetest.register_node("digicompute:"..itemstring.."_bios", {
+	minetest.register_node("digicompute_redo:"..itemstring.."_bios", {
 		light_source = def.light_source or 7,
 		digicompute = {
 			state = "bios",
@@ -242,7 +242,7 @@ function digicompute.register_computer(itemstring, def)
 		paramtype = "light",
 		paramtype2 = "facedir",
 		groups = {cracky = 2, not_in_creative_inventory = 1},
-		drop = "digicompute:"..itemstring,
+		drop = "digicompute_redo:"..itemstring,
 		sounds = default.node_sound_stone_defaults(),
 		node_box = def.node_box,
 		on_destruct = function(pos)
@@ -252,7 +252,7 @@ function digicompute.register_computer(itemstring, def)
 		end,
 	})
 	-- on
-	minetest.register_node("digicompute:"..itemstring.."_on", {
+	minetest.register_node("digicompute_redo:"..itemstring.."_on", {
 		light_source = def.light_source or 7,
 		digicompute = {
 			state = "on",
@@ -264,7 +264,7 @@ function digicompute.register_computer(itemstring, def)
 		paramtype = "light",
 		paramtype2 = "facedir",
 		groups = {cracky = 2, not_in_creative_inventory = 1},
-		drop = "digicompute:"..itemstring,
+		drop = "digicompute_redo:"..itemstring,
 		sounds = default.node_sound_stone_defaults(),
 		node_box = def.node_box,
 		on_rightclick = function(pos, node, player)
